@@ -66,4 +66,4 @@ There is a POST request route defined on the deployed app root URL for requestin
 This can be useful for instance in configuring web-hooks in your Git server so that the information in your Specs deployment is updated whenever someone pushes new information your remote Git repo.
 
 
-(C) 2015
+(C) 2016

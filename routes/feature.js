@@ -44,7 +44,6 @@ router.get(/([^\/]+)\/file\/([\w\W]+)/, function (req, res, next) {
   var projectData = {
     repoName: repoName,
     repoUrl: repoName,
-    repoChopped: repoName,
     localPathRoot: appConfig.projectsPath,
     currentBranchName: ref
   };

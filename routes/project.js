@@ -68,9 +68,7 @@ router.get(/^\/([^\/]+)$/, function(req, res, next) {
   // Create the render and passError functions.
   var configuredRender = getRender(res, appConfig, renderOptions);
   var configuredPassError = getPassError(next);
-var repoChopped = repoName.replace(/https:\/\//,'').replace(/\//g,'.');
   var projectData = {
-    repoChopped: repoChopped,
     repoUrl: repoName,
     repoName: repoName,
     localPathRoot: appConfig.projectsPath

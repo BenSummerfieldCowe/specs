@@ -68,8 +68,9 @@ router.get(/^\/([^\/]+)$/, function(req, res, next) {
   // Create the render and passError functions.
   var configuredRender = getRender(res, appConfig, renderOptions);
   var configuredPassError = getPassError(next);
-
+var repoChopped = repoName.replace(/https:\/\//,'').replace(/\//g,'.');
   var projectData = {
+    repoChopped: repoChopped,
     repoUrl: repoName,
     repoName: repoName,
     localPathRoot: appConfig.projectsPath
@@ -177,6 +178,7 @@ function getRender(res, appConfig, renderOptions) {
     renderingData = modifyProjectView(renderingData);
 
     // Configure function for mapping file paths to file data and use it.
+    //TODO reminder look here
     var pathToData = processFiles.getFilePathToFileObject(appConfig.projectRoute, projectData, getFileContent);
     projectData.files = projectData.files.map(pathToData);
 

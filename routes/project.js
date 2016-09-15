@@ -39,6 +39,7 @@ router.get(/^\/([^\/]+)$/, function(req, res, next) {
 
   // The repository name from the URL.
   var repoName = req.params[0];
+  console.log(repoName);
 
   // Query param indicating a particular ref should
   // be used when retrieving repo data.
@@ -69,6 +70,7 @@ router.get(/^\/([^\/]+)$/, function(req, res, next) {
   var configuredPassError = getPassError(next);
 
   var projectData = {
+    repoUrl: repoName,
     repoName: repoName,
     localPathRoot: appConfig.projectsPath
   };

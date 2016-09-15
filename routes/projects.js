@@ -48,6 +48,8 @@ router.get('/', function(req, res, next) {
           appVersion: appVersion
         };
         if (projectNames.length) {
+          //TODO have getProjectNames retrieve not just the name (the url) but also a flag if there is no repeated, if no repeated then
+          //TODO snip the leading bit showing only project, or maybe only last bit? have to change projects.hbs so the href is still the url
           data.projects = projectNames;
         }
         res.render('projects', data);
@@ -55,7 +57,8 @@ router.get('/', function(req, res, next) {
       .catch(getErrorHandler(next));
     return;
   }
-
+// repoUrl = repoUrl.replace(/https:\/\//,'')
+//   .replace(/\//g,'.');
   // Else get the project and load the individual project page.
   var projectData = {
     repoUrl: repoUrl,
@@ -69,7 +72,10 @@ router.get('/', function(req, res, next) {
   // if it does exist it will be updated.
   getProject(projectData)
     .then(function(projectData) {
-      var projectLink = path.posix.join(appConfig.projectRoute, projectData.repoName);
+      console.log('repo url ' + projectData.repoUrl);
+      console.log('in routes project ' + projectData.repoName);
+      //TODO problem here because it will hash the project name and try navigating there
+      var projectLink = path.posix.join(appConfig.projectRoute, projectData.repoUrl.replace(/https:\/\//,'').replace(/\//g,'.'));
 
       // Redirect to the project page.
       res.redirect(projectLink);

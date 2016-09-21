@@ -61,7 +61,7 @@ router.get('/', function(req, res, next) {
   // Else get the project and load the individual project page.
   var projectData = {
     repoUrl: repoUrl,
-    repoName: /(.+)\.git/.exec(repoUrl.replace(/https:\/\//,'').replace(/\//g,'.'))[1],
+    repoName: repoUrl.replace(/https:\/\//,'').replace(/\//g,'.').replace(/\.git$/i, ''),
     localPathRoot: appConfig.projectsPath
   };
 
@@ -75,7 +75,7 @@ router.get('/', function(req, res, next) {
       console.log('repo url ' + projectData.repoUrl);
       console.log('in routes project ' + projectData.repoName);
       //TODO problem here because it will hash the project name and try navigating there
-      var projectLink = path.posix.join(appConfig.projectRoute, /(.+)\.git/.exec(projectData.repoUrl.replace(/https:\/\//,'').replace(/\//g,'.'))[1]);
+      var projectLink = path.posix.join(appConfig.projectRoute, projectData.repoUrl.replace(/https:\/\//,'').replace(/\//g,'.').replace(/\.git$/i, ''));
 
       // Redirect to the project page.
       res.redirect(projectLink);

@@ -15,10 +15,10 @@
         <ul class="projects-list">
           {{#each projects}}
             <li class="project group">
-              <button data-project-name="{{this}}" class="delete-project call-to-action interactive"><svg class="icon icon-cross"><use xlink:href="#icon-cross"></use></svg></button>
-              <a class="project-link-container" href="{{../projectRoute}}/{{this}}">
+              <button data-project-name="{{this.url}}" class="delete-project call-to-action interactive"><svg class="icon icon-cross"><use xlink:href="#icon-cross"></use></svg></button>
+              <a class="project-link-container" href="{{../projectRoute}}/{{this.url}}">
                 <section class="project-link">
-                  <p>{{this}}</p>
+                  <p>{{this.displayName}}</p>
                 </section>
               </a>
             </li>

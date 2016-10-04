@@ -35,7 +35,7 @@ function markTargetedFeature(feature, targetedScenarioName) {
 
 
 // Display an individual feature in a project.
-// htpp://host/<project name>/file/<root/to/file>
+// http://host/<project name>/file/<root/to/file>
 router.get(/([^\/]+)\/file\/([\w\W]+)/, function (req, res, next) {
   var repoName = req.params[0];
   var filePath = req.params[1];
@@ -43,6 +43,7 @@ router.get(/([^\/]+)\/file\/([\w\W]+)/, function (req, res, next) {
 
   var projectData = {
     repoName: repoName,
+    repoUrl: repoName,
     localPathRoot: appConfig.projectsPath,
     currentBranchName: ref
   };
